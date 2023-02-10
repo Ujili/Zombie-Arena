@@ -26,7 +26,7 @@ private:
 	IntRect m_Arena;
 	
 	//How big is each tile of the arena
-	int m_Tilesize;
+	int m_TileSize;
 
 	//Which direction is the character currently moving
 	bool m_UpPressed;
@@ -83,7 +83,7 @@ public:
 	void stopLeft();
 	void stopRight();
 	void stopUp();
-	void stopDOwn();
+	void stopDown();
 
 	//This function is called every frame
 	void update(float elapsedTime, Vector2i mousePosition);
