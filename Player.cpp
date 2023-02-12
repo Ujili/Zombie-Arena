@@ -86,6 +86,7 @@ int Player::getHealth()
 	return m_Health;
 }
 
+//Movememt functions
 void Player::moveLeft()
 {
 	m_LeftPressed = true;

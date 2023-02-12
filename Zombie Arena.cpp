@@ -130,6 +130,87 @@ int main()
 
 		} //End WASD for movement
 
+
+		//Handle the LEVELING_UP state
+		if (state == State::LEVELING_UP)
+		{
+			//Handle the player LEVELING_UP
+			if (event.key.code == Keyboard::Num1)
+			{
+				state = State::PLAYING;
+			}
+			if (event.key.code == Keyboard::Num2)
+			{
+				state = State::PLAYING;
+			}
+			if (event.key.code == Keyboard::Num3)
+			{
+				state = State::PLAYING;
+			}
+			if (event.key.code == Keyboard::Num4)
+			{
+				state = State::PLAYING;
+			}
+			if (event.key.code == Keyboard::Num5)
+			{
+				state = State::PLAYING;
+			}
+			if (event.key.code == Keyboard::Num6)
+			{
+				state = State::PLAYING;
+			}
+
+			if (state == State::PLAYING)
+			{
+				//Prepare the level
+				//We will modify the next two lines later
+				arena.width = 500;
+				arena.height = 500;
+				arena.left = 0;
+
+				//We will modify this line of code later
+				int tileSize = 50;
+
+				//Spawn the player in middle of the arena
+				player.spawn(arena, resolution, tileSize);
+
+				//Reset the clock so there is no frame jump
+				clock.restart();
+			}
+		} //End of LEVELING_UP
+
+
+		//*****************
+		//Update the Frame
+		//*****************
+		
+		if (state == State::PLAYING)
+		{
+			//Update the delta time
+			Time dt = clock.restart();
+
+			//Update the total game time
+			gameTimeTotal += dt;
+
+			//Make a decimal fraction of 1 from the delta time
+			float dtAsSeconds = dt.asSeconds();
+
+			//Where is the mouse pointer
+			mouseScreenPosition = Mouse::getPosition();
+
+			//Convert the mouse position to world coordinates of mainView
+			mouseWorldPosition = window.mapPixelToCoords(Mouse::getPosition(), mainView);
+
+			//Update the player
+			player.update(dtAsSeconds, Mouse::getPosition());
+
+			//Take note of player position
+			Vector2f playerPosition(player.getCenter());
+
+			//Make the view center on the palyer
+			mainView.setCenter(player.getCenter());
+		} //End updating the scene
+
 	} //End of game loop
 
 
